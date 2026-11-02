@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>= <style class="css"></style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#b90019">
+<meta name="description" content="FlashOpen — arquivo independente de jogos Flash, emuladores e packs SWF.">
+<title>FlashOpen — Flash Games Archive</title>
+<style>
+:root{--red:#c90020;--red-dark:#850014;--red-deep:#59000d;--paper:#fff;--ink:#171717;--muted:#606060;--line:#d8d8d8;--green:#238a12;--blue:#0758bd}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:#fff;color:var(--ink);font:16px Arial,Helvetica,sans-serif}
+a{color:#0758bd}
+button,input{font:inherit}
+button,a{ -webkit-tap-highlight-color:transparent }
+#diamond-cursor{cursor:url('friv-diamond-cursor.png') 5 5,auto}
+a,button,label{cursor:url('friv-diamond-cursor.png') 5 5,pointer}
+.layout{min-height:100vh}
+.sidebar{position:fixed;inset:0 auto 0 0;width:246px;background:linear-gradient(180deg,#d00020 0%,#a90019 58%,#720012 100%);color:white;overflow-y:auto;z-index:20;box-shadow:3px 0 8px #0003}
+.brand{display:block;padding:22px 18px 17px;color:#fff;text-decoration:none;border-bottom:1px solid #ffffff33}
+.logo{display:block;width:150px;height:135px;margin:0 auto 8px}
+.brand-name{display:block;text-align:center;font-size:34px;letter-spacing:-1.7px;font-weight:400}
+.brand-sub{display:block;text-align:right;margin:-2px 30px 0 0;font-size:14px}
+.side-nav{padding:0 5px 20px}
+.side-nav a{display:flex;align-items:center;justify-content:space-between;padding:9px 9px;margin:1px 0;color:#fff;text-decoration:none;font-weight:bold;background:#72001235;border-bottom:1px solid #ffffff14}
+.side-nav a:hover,.side-nav a.active{background:#ffffff35}
+.side-nav a:after{content:"◀";font-size:11px;color:#fff}
+.nav-gap{height:26px}
+.side-note{padding:18px 12px;color:#ffe2e5;font-size:12px;line-height:1.55;border-top:1px solid #ffffff2b}
+.mobilebar{display:none}
+main{margin-left:246px;padding:22px 30px 55px;max-width:1600px}
+.content{max-width:1250px;margin:0 auto}
+.page-title{font-size:32px;font-weight:400;margin:0 0 18px;padding-bottom:7px;border-bottom:2px solid #ccc}
+.intro{font-size:16px;line-height:1.5;margin:12px 0 16px}
+.hero-video{max-width:650px;margin:18px auto 16px;aspect-ratio:16/9;background:linear-gradient(135deg,#eee,#ddd);border:1px solid #aaa;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-video:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,#ff7b3944,transparent 28%),linear-gradient(135deg,#f4e6e6,#c6c6c6 48%,#f4d7d7)}
+.hero-mark{position:relative;display:flex;align-items:center;gap:16px;color:var(--red);font-weight:bold;font-size:clamp(34px,5vw,66px);text-shadow:2px 3px 0 #fff}
+.hero-mark svg{width:clamp(70px,11vw,130px);height:auto}
+.hero-caption{position:absolute;left:14px;top:12px;font-size:13px;color:#333;font-weight:bold}
+p{line-height:1.5}
+.copy{margin:13px 0}
+.copy strong{color:#064da8}
+.quick-actions{display:grid;grid-template-columns:minmax(250px,1.5fr) minmax(190px,.8fr);gap:9px;max-width:700px;margin:20px auto 30px}
+.action{display:flex;align-items:center;gap:15px;padding:16px;color:#fff;text-decoration:none;border-radius:12px;min-height:88px;box-shadow:0 3px 6px #0003}
+.action.download-main{background:linear-gradient(110deg,#fa172d,#a6001c)}
+.action.search{background:linear-gradient(110deg,#39ad00,#126400)}
+.action .big{font-size:38px}
+.action strong{font-size:20px;line-height:1.1}
+.section{margin:36px 0 45px}
+.section h2{font-size:25px;font-weight:400;border-bottom:2px solid #ccc;padding-bottom:8px;margin:0 0 17px}
+.section-lead{color:#555;margin:-5px 0 17px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{border:1px solid #c9c9c9;background:#fafafa;padding:19px;box-shadow:0 2px 5px #0000000d}
+.card h3{margin:5px 0 10px;font-size:22px}
+.card p{margin:0 0 15px;color:#444}
+.tag{display:inline-block;background:#f3dfe2;color:#9c0018;padding:5px 8px;font-size:11px;font-weight:bold;text-transform:uppercase;letter-spacing:.6px}
+.os{display:inline-block;margin:10px 0 2px;color:#555;font-size:12px;font-weight:bold}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:bold;padding:11px 15px;border:0;border-radius:3px}
+.btn:hover{background:#9d0018}
+.btn.secondary{background:#333}
+.btn.disabled{background:#777;cursor:not-allowed;opacity:.8}
+.missing{font-size:12px;color:#7b3030;margin-top:9px}
+.game-shell{display:grid;grid-template-columns:220px minmax(0,1fr);gap:14px;border:1px solid #aaa;padding:12px;background:#f7f7f7}
+.game-list h3{margin:3px 0 12px;font-size:19px}
+.gamebtn{display:block;width:100%;text-align:left;padding:12px;margin:0 0 7px;background:#eee;border:1px solid #aaa;color:#111;font-weight:bold}
+.gamebtn.active{background:#b90019;color:white;border-color:#8b0012}
+.game-stage{min-width:0}
+.game-stage h3{margin:4px 0 12px;font-size:22px;font-weight:400}
+#game-frame{width:100%;height:500px;background:#111;border:1px solid #777;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;padding:20px}
+#game-frame ruffle-player{width:100%;height:100%}
+.game-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.upload{margin-top:14px;padding:14px;background:#fff;border:1px dashed #999}
+.upload label{display:block;font-weight:bold;margin-bottom:8px}
+.upload input{max-width:100%}
+.partner{border-left:5px solid var(--red);background:#f6f6f6;padding:20px}
+.partner h3{margin:0 0 8px}
+.small{font-size:12px;color:#666}
+.notice{padding:13px 15px;background:#fff6df;border-left:4px solid #d38a00;line-height:1.5;margin:15px 0}
+footer{border-top:1px solid #ccc;margin-top:50px;padding:22px 0;color:#666;font-size:13px}
+@media(max-width:850px){.sidebar{width:205px}main{margin-left:205px;padding:20px}.brand-name{font-size:29px}.cards{grid-template-columns:1fr}.game-shell{grid-template-columns:1fr}.game-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.game-list h3{grid-column:1/-1}.gamebtn{font-size:12px;padding:9px 6px}#game-frame{height:420px}}
+@media(max-width:620px){.sidebar{display:none}.mobilebar{display:flex;align-items:center;justify-content:space-between;background:var(--red);color:#fff;padding:10px 14px;position:sticky;top:0;z-index:30}.mobilebar strong{font-size:20px}.mobilebar a{color:#fff;text-decoration:none;font-weight:bold}main{margin:0;padding:18px 14px 40px}.page-title{font-size:28px}.hero-video{margin:12px 0}.quick-actions{grid-template-columns:1fr}.game-list{grid-template-columns:1fr}.game-list h3{grid-column:auto}.gamebtn{font-size:14px;padding:11px}#game-frame{height:330px}}
+</style>
+</head>
+<body id="diamond-cursor">
+<aside class="sidebar">
+  <a class="brand" href="#inicio" aria-label="FlashOpen início">
+    <svg class="logo" viewBox="0 0 180 150" role="img" aria-label="Símbolo FlashOpen">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#ffe1e4"/></linearGradient></defs>
+      <path d="M8 10 L166 73 L49 139 L75 83 Z" fill="url(#lg)" stroke="#6f0011" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M22 20 L140 71 L61 113 L86 77 Z" fill="#bd001d" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M45 30 L115 69 L77 86 L91 69 Z" fill="#fff"/>
+    </svg>
+    <span class="brand-name">FlashOpen</span><span class="brand-sub">Arcade</span>
+  </a>
+  <nav class="side-nav">
+    <a class="active" href="#inicio">Início</a>
+    <a href="#downloads">Downloads</a>
+    <a href="#jogos">Jogos SWF</a>
+    <a href="#packs">Packs de jogos</a>
+    <a href="#parceiros">Parceiros</a>
+    <a href="#sobre">Sobre / Ajuda</a>
+    <div class="nav-gap"></div>
+    <a href="#downloads">FlashOpen Normal</a>
+    <a href="#downloads">FlashOpen BI7</a>
+  </nav>
+  <div class="side-note">Um arquivo independente para explorar jogos e experiências da era Flash.<br><br>Projeto não afiliado à Adobe ou ao Flashpoint.</div>
+</aside>
+<div class="mobilebar"><strong>⚡ FlashOpen</strong><a href="#downloads">Downloads ↓</a><a href="#jogos">Jogos</a></div>
+<main><div class="content">
+<section id="inicio">
+  <h1 class="page-title">Bem-vindo ao FlashOpen</h1>
+  <div class="hero-video">
+    <span class="hero-caption">FLASHOPEN · GAME ARCHIVE</span>
+    <div class="hero-mark">
+      <svg viewBox="0 0 100 110" aria-hidden="true"><path d="M59 3 12 62h31l-9 44 55-70H57Z" fill="#c90020" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
+      <span>FLASH<br>OPEN</span>
+    </div>
+  </div>
+  <p class="copy">O <b>FlashOpen</b> reúne downloads do projeto, jogos em formato SWF e links úteis para quem sente saudade da era de ouro dos jogos de navegador.</p>
+  <p class="copy">Explore as versões para Windows, abra os jogos disponíveis no emulador Ruffle ou baixe um pack para montar sua própria coleção. A interface foi organizada para lembrar os antigos arquivos e launchers de jogos, com navegação simples e direta.</p>
+  <div class="quick-actions">
+    <a class="action download-main" href="#downloads"><span class="big">⬇</span><strong>Baixar<br>FlashOpen</strong></a>
+    <a class="action search" href="#jogos"><span class="big">⌕</span><strong>Explorar<br>Jogos</strong></a>
+  </div>
+</section>
+
+<section class="section" id="downloads">
+  <h2>Downloads do FlashOpen</h2>
+  <p class="section-lead">Escolha a edição compatível com seu Windows.</p>
+  <div class="cards">
+    <article class="card"><span class="tag">Versão principal</span><div class="os">WINDOWS 10 · WINDOWS 11</div><h3>FlashOpen Normal</h3><p>Versão principal para computadores com Windows 10 ou Windows 11. Extraia o pacote e leia as instruções incluídas.</p><a class="btn disabled" aria-disabled="true">Download aguardando arquivo</a><div class="missing">Arquivo esperado: <b>FlashOpen.rar</b>. Adicione-o à pasta do site para ativar o download.</div></article>
+    <article class="card"><span class="tag">Edição legado</span><div class="os">WINDOWS 7</div><h3>FlashOpen BI7</h3><p>Edição destinada a computadores com Windows 7. Use esta edição no lugar da versão principal.</p><a class="btn disabled" aria-disabled="true">Download aguardando arquivo</a><div class="missing">Arquivo esperado: <b>FlashopenBi7.rar</b>. Adicione-o à pasta do site para ativar o download.</div></article>
+  </div>
+  <div class="notice"><b>Nota:</b> os dois arquivos RAR originais não vieram junto com os materiais disponíveis nesta conversa. Por isso, deixei as opções visíveis, mas não coloquei links falsos ou downloads quebrados.</div>
+</section>
+
+<section class="section" id="jogos">
+  <h2>Jogos em Flash</h2>
+  <p class="section-lead">Selecione um jogo e clique em “Jogar”. A execução usa Ruffle, não o plugin antigo do Adobe Flash.</p>
+  <div class="game-shell">
+    <aside class="game-list"><h3>Escolha seu jogo</h3>
+      <button class="gamebtn active" data-file="papasbakeria.swf">🥐 Papa's Bakeria</button>
+      <button class="gamebtn" data-file="papasburgeria.swf">🍔 Papa's Burgeria</button>
+      <button class="gamebtn" data-file="papasfreezeria.swf">🍦 Papa's Freezeria</button>
+    </aside>
+    <div class="game-stage"><h3 id="game-title">Papa's Bakeria</h3>
+      <div id="game-frame"><div><b>Jogo selecionado: Papa's Bakeria</b><p>Clique em “Jogar” para carregar o SWF.</p></div></div>
+      <div class="game-controls"><button class="btn" id="play-game">▶ Jogar</button><button class="btn secondary" id="reload-game">↻ Recarregar</button><button class="btn secondary" id="fullscreen-game">Tela cheia</button></div>
+      <div class="upload"><label for="swf-upload">Upload de arquivo .swf</label><input id="swf-upload" type="file" accept=".swf,application/x-shockwave-flash"><p class="small">Você também pode selecionar um SWF do seu computador para testar neste navegador.</p></div>
+    </div>
+  </div>
+  <div class="notice">O Ruffle precisa de conexão com a internet para carregar. Nem todos os jogos SWF são totalmente compatíveis; o funcionamento depende do arquivo e do navegador.</div>
+</section>
+
+<section class="section" id="packs">
+  <h2>Packs de jogos SWF</h2>
+  <div class="cards">
+    <article class="card"><span class="tag">Download externo</span><h3>Pack de Jogos .SWF</h3><p>Pacote de jogos em formato RAR disponibilizado pelo MediaFire.</p><a class="btn" href="https://www.mediafire.com/file/ehg2rccpwbcuhj2/Pack_de_Jogos_.swf.rar/file" target="_blank" rel="noopener noreferrer">⬇ Baixar pack no MediaFire</a></article>
+    <article class="card"><span class="tag">Sua coleção</span><h3>Adicionar jogos</h3><p>Use a área de upload acima para testar arquivos SWF individuais sem precisar alterar o site.</p><a class="btn secondary" href="#jogos">Abrir área de jogos</a></article>
+  </div>
+</section>
+
+<section class="section" id="parceiros">
+  <h2>Parceiros</h2>
+  <div class="partner"><span class="tag">Emulação Flash</span><h3>Flash Emulator Ruffle</h3><p>Projeto parceiro relacionado à emulação de jogos e conteúdos SWF.</p><a class="btn" href="https://flashemulaodrruffle.edgeone.dev/" target="_blank" rel="noopener noreferrer">Visitar parceiro ↗</a></div>
+</section>
+
+<section class="section" id="sobre">
+  <h2>Sobre o FlashOpen</h2>
+  <p>FlashOpen é o nome de um projeto independente de arquivo e acesso a jogos Flash — não uma empresa registrada. Não é afiliado à Adobe, ao Flashpoint ou aos criadores dos jogos apresentados.</p>
+  <p class="small">Para publicar corretamente, envie o index.html, o cursor friv-diamond-cursor.png, a pasta jogos/ completa e, quando disponíveis, os dois arquivos RAR do FlashOpen.</p>
+</section>
+<footer><b>⚡ FLASHOPEN ARCADE</b><br>Projeto independente para preservar e acessar experiências da era Flash.<br>Ruffle é um projeto separado. FlashOpen não é afiliado à Adobe nem ao Flashpoint.</footer>
+</div></main>
+<script>
+const names={'papasbakeria.swf':"Papa's Bakeria",'papasburgeria.swf':"Papa's Burgeria",'papasfreezeria.swf':"Papa's Freezeria"};
+let selected='papasbakeria.swf', objectUrl=null, rufflePromise=null;
+const frame=document.getElementById('game-frame'), title=document.getElementById('game-title');
+function selectGame(file){selected=file;title.textContent=names[file]||file;document.querySelectorAll('.gamebtn').forEach(b=>b.classList.toggle('active',b.dataset.file===file));frame.innerHTML='<div><b>'+title.textContent+'</b><p>Clique em “Jogar” para carregar o SWF.</p></div>';}
+document.querySelectorAll('.gamebtn').forEach(b=>b.addEventListener('click',()=>selectGame(b.dataset.file)));
+function loadRuffle(){if(window.RufflePlayer)return Promise.resolve();if(rufflePromise)return rufflePromise;rufflePromise=new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://unpkg.com/@ruffle-rs/ruffle';s.onload=()=>window.RufflePlayer?resolve():reject(new Error('Ruffle não ficou disponível.'));s.onerror=()=>reject(new Error('Não foi possível carregar o Ruffle. Verifique a internet.'));document.head.appendChild(s)});return rufflePromise;}
+async function play(source){frame.innerHTML='<div>Carregando o emulador Ruffle…</div>';try{await loadRuffle();const ruffle=window.RufflePlayer.newest();const player=ruffle.createPlayer();player.style.width='100%';player.style.height='100%';frame.innerHTML='';frame.appendChild(player);await player.load(source);}catch(e){frame.innerHTML='<div><b>Não foi possível abrir o jogo.</b><p>'+String(e.message||e)+'</p><p>Confira se a pasta jogos/ foi enviada junto com o site.</p></div>';}}
+document.getElementById('play-game').addEventListener('click',()=>play('jogos/'+selected));
+document.getElementById('reload-game').addEventListener('click',()=>play('jogos/'+selected));
+document.getElementById('fullscreen-game').addEventListener('click',()=>{const p=frame.querySelector('ruffle-player');if(p&&p.requestFullscreen)p.requestFullscreen();});
+document.getElementById('swf-upload').addEventListener('change',e=>{const file=e.target.files&&e.target.files[0];if(!file)return;if(objectUrl)URL.revokeObjectURL(objectUrl);objectUrl=URL.createObjectURL(file);title.textContent=file.name;play(objectUrl);});
+</script>
+</body>
+</html>

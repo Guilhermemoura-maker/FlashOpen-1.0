@@ -1,0 +1,17 @@
+FLASHOPEN ARCADE — PACOTE OTIMIZADO
+
+1. Extraia o ZIP.
+2. Envie a pasta FlashOpen_Optimizado para sua hospedagem mantendo a estrutura:
+   index.html
+   friv-diamond-cursor.png
+   jogos/papasbakeria.swf
+   jogos/papasburgeria.swf
+   jogos/papasfreezeria.swf
+3. Os jogos usam Ruffle carregado pela internet.
+4. Os arquivos FlashOpen.rar e FlashopenBi7.rar não estavam disponíveis.
+   Para ativar os dois downloads, coloque esses arquivos na mesma pasta do index.html
+   e altere os botões desativados para links de download.
+5. O pack MediaFire e o parceiro Ruffle já estão configurados.
+
+O Ruffle não é o plugin Adobe Flash NPAPI e nem todos os SWF são compatíveis.
+FlashOpen é um projeto independente, sem afiliação à Adobe ou ao Flashpoint.

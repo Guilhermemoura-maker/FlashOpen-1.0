@@ -1,0 +1,28 @@
+/* FLASHOPEN - CSS raiz, puro e leve */
+body {
+  background: #0f0f0f;
+  color: #fff;
+  font-family: Verdana, sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+#rank {
+  background: #ffcc00;
+  color: #000;
+  padding: 8px;
+  font-weight: bold;
+  border-bottom: 3px solid #ff9900;
+}
+
+.game-box {
+  border: 2px solid #333;
+  display: inline-block;
+  margin: 10px;
+  padding: 5px;
+  background: #1a1a1a;
+}
+
+.game-box:hover {
+  border-color: #ffcc00; /* brilha quando passa o mouse, vicia */
+}
